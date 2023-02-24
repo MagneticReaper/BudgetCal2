@@ -1,0 +1,265 @@
+﻿<Window x:Name="windowBC" x:Class="BudgetCal2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BudgetCal2" d:DataContext="{d:DesignInstance Type=local:BCFile}"
+        mc:Ignorable="d"
+        Title="Budget Calendar" MinWidth="700" MinHeight="350" Background="#FF183F5B" Icon="/BudgetCal2.png" SizeToContent="WidthAndHeight">
+    <DockPanel LastChildFill="True" Margin="1">
+        <Grid MinWidth="96" MinHeight="40" DockPanel.Dock="Top" Margin="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <DockPanel LastChildFill="True">
+                <Button x:Name="btAcc" Content="Accounts" BorderBrush="{x:Null}" Background="#3F000000" Foreground="White" Click="Button_Click_Accounts"/>
+            </DockPanel>
+            <DockPanel LastChildFill="True" Grid.Column="1">
+                <Button x:Name="btCal" Content="Calendar" BorderBrush="{x:Null}" Background="#3F000000" Foreground="White" Click="Button_Click_Calendar"/>
+            </DockPanel>
+            <DockPanel LastChildFill="True" Grid.Row="1">
+                <Button x:Name="btTrans" Content="Transactions" BorderBrush="{x:Null}" Background="#3F000000" Foreground="White" Click="Button_Click_Transactions"/>
+            </DockPanel>
+            <DockPanel LastChildFill="True" Grid.Column="1" Grid.Row="1">
+                <Button x:Name="btStats" Content="Statistics" BorderBrush="{x:Null}" Background="#3F000000" Foreground="White" Click="BtStats_Click"/>
+            </DockPanel>
+            <DockPanel Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                <Button Content="&lt;&lt;" DockPanel.Dock="Left" BorderBrush="{x:Null}" Width="25" Background="#3F000000" Foreground="White" Click="Button_Click_PrevYear"/>
+                <Button Content="&lt;" DockPanel.Dock="Left" BorderBrush="{x:Null}" Width="25" Background="#3F000000" Foreground="White" Click="Button_Click_PrevMonth"/>
+                <Button Content="&gt;&gt;" DockPanel.Dock="Right" BorderBrush="{x:Null}" Width="25" Background="#3F000000" Foreground="White" Click="Button_Click_NextYear"/>
+                <Button Content="&gt;" DockPanel.Dock="Right" BorderBrush="{x:Null}" Width="25" Background="#3F000000" Foreground="White" Click="Button_Click_NextMonth"/>
+                <DockPanel Background="#3F000000" Margin="1,1,1,1">
+                    <Label x:Name="labelDate" Content="{Binding SelectedDate}" ContentStringFormat="{}{0:MMMM yyy}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Padding="0,0,0,0" FontSize="20" FontWeight="Bold"/>
+                </DockPanel>
+            </DockPanel>
+            <DockPanel LastChildFill="True" Grid.Column="5">
+                <Button x:Name="btNew" Content="New" BorderBrush="{x:Null}" Background="#3F000000" Foreground="White" Click="Button_Click_New"/>
+            </DockPanel>
+            <DockPanel LastChildFill="True" Grid.Column="6">
+                <Button x:Name="btFile" Content="Files" BorderBrush="{x:Null}" Background="#3F000000" Foreground="White" Click="Button_Click_Open"/>
+            </DockPanel>
+            <DockPanel LastChildFill="True" Grid.Column="5" Grid.Row="1">
+                <Button x:Name="btSave" Content="Save" BorderBrush="{x:Null}" Background="#1FFFFFFF" Foreground="White" Click="Button_Click_Save"/>
+            </DockPanel>
+            <DockPanel LastChildFill="True" Grid.Column="6" Grid.Row="1">
+                <Button x:Name="btAbout" Content="About" BorderBrush="{x:Null}" Background="#3F000000" Foreground="White" Click="Button_Click_About"/>
+            </DockPanel>
+        </Grid>
+        <StackPanel x:Name="panelNewFile" DockPanel.Dock="Top"  Margin="1" Visibility="Collapsed">
+            <Label Content="Enter a file name:" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+            <DockPanel LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25">
+                <TextBox x:Name="textboxNewFileName" MinWidth="120" Background="#3FFFFFFF" BorderBrush="{x:Null}" HorizontalAlignment="Center" Padding="1" MaxLines="1" VerticalContentAlignment="Stretch"/>
+                <Button Content="OK" HorizontalAlignment="Center" BorderBrush="{x:Null}" Background="#3F000000" Padding="5,0,5,1" Foreground="White" Click="Button_Click_NewOK"/>
+            </DockPanel>
+            <Label x:Name="labelNewFileStatus" Content="" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+        </StackPanel>
+        <StackPanel x:Name="panelOpenFile" DockPanel.Dock="Top"  Margin="1" Visibility="Collapsed">
+            <Label Content="Choose a file:" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+            <DockPanel LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center" MinHeight="50">
+                <ListBox x:Name="listboxOpenFileName" MinWidth="120" Background="#3FFFFFFF" BorderBrush="{x:Null}" HorizontalAlignment="Center" Padding="1" VerticalContentAlignment="Stretch" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button Content="Open" BorderBrush="{x:Null}" Background="#3F000000" Padding="5,0,5,1" Foreground="White" Click="Button_Click_OpenOk"/>
+                    <Button Content="Delete" BorderBrush="{x:Null}" Background="#3F000000" Padding="5,0,5,1" Foreground="White" Click="Button_Click_OpenDelete" Grid.Row="1"/>
+                </Grid>
+
+            </DockPanel>
+            <Label x:Name="labelOpenFileStatus" Content="" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+        </StackPanel>
+        <StackPanel x:Name="panelAbout" DockPanel.Dock="Top"  Margin="2" Visibility="Collapsed">
+            <Image Source="/BudgetCal2.png" Stretch="Uniform" MaxHeight="100" Margin="2,2,2,4"/>
+            <DockPanel Background="#3F000000">
+                <Label Content="About" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+            </DockPanel>
+            <DockPanel Background="#3FFFFFFF">
+                <TextBox Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" SelectionTextBrush="{x:Null}" Text="Creators:&#x0d;&#x0a;Rémy Bourdon, 2295331&#x0d;&#x0a;Dominic Read, 2295256&#x0d;&#x0a;&#x0d;&#x0a;For:&#x0d;&#x0a;Vanier - Application Development&#x0d;&#x0a;Fall 2022 - sect. 05813&#x0d;&#x0a;With:&#x0d;&#x0a;Kawser Wazed Nafi" IsReadOnly="True"/>
+            </DockPanel>
+        </StackPanel>
+        <DockPanel x:Name="panelAccounts" DockPanel.Dock="Top" Margin="0" Visibility="Collapsed">
+            <DataGrid x:Name="listAccounts" GridLinesVisibility="None" d:ItemsSource="{d:SampleData ItemCount=5}" Background="{x:Null}" BorderBrush="{x:Null}" RowHeaderWidth="0" IsVisibleChanged="ListAccounts_IsVisibleChanged" Visibility="Collapsed" LayoutUpdated="ListAccounts_IsVisibleChanged" Loaded="ListAccounts_IsVisibleChanged" SizeChanged="ListAccounts_IsVisibleChanged">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value='#1FFFFFFF' />
+                        <Setter Property="Margin" Value="1" />
+                        <Setter Property="Padding" Value="4"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Background" Value="#3F000000"/>
+                        <Setter Property="Foreground" Value="White"/>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="#00000000"/>
+                    </Style>
+                </DataGrid.RowStyle>
+            </DataGrid>
+        </DockPanel>
+
+        <DockPanel x:Name="panelTransactions" DockPanel.Dock="Top" Margin="0" Visibility="Collapsed">
+            <DockPanel x:Name="panelRepeat" DockPanel.Dock="Right" InputScope="Digits" Visibility="Collapsed">
+                <Label DockPanel.Dock="Top" Content="Select start date:" Foreground="White"/>
+                <DatePicker x:Name="repeatStart" DockPanel.Dock="Top" BorderBrush="{x:Null}"/>
+                <Label DockPanel.Dock="Top" Content="Select end date:" Foreground="White"/>
+                <DatePicker x:Name="repeatEnd" DockPanel.Dock="Top" BorderBrush="{x:Null}"/>
+                <Label DockPanel.Dock="Top" Content="Select frequency:" Foreground="White"/>
+                <ComboBox x:Name="repeatType" SelectedIndex="5" DockPanel.Dock="Top" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" Margin="2,2,2,2">
+                    <ComboBoxItem Content="Every Week"/>
+                    <ComboBoxItem Content="Every 2 Weeks"/>
+                    <ComboBoxItem Content="Every Month"/>
+                    <ComboBoxItem Content="Every 3 Months"/>
+                    <ComboBoxItem Content="Every Year"/>
+                    <ComboBoxItem Content="Once"/>
+                </ComboBox>
+                <Label DockPanel.Dock="Top" Content="Max recurence:" Foreground="White" Padding="5,5,5,1"/>
+                <Label DockPanel.Dock="Top" Content="0 for no limit" Foreground="White" FontSize="8" Padding="5,0,0,5"/>
+                <TextBox x:Name="repeatMax" Text="0" DockPanel.Dock="Top" BorderBrush="{x:Null}" Margin="1,1,1,1"/>
+                <Button  Content="OK" BorderBrush="{x:Null}" Background="#3F000000" Foreground="White" DockPanel.Dock="Top" Margin="0,6,0,0" Click="Button_Click_RepeatOK" />
+            </DockPanel>
+            <DataGrid x:Name="listTransactions" CanUserReorderColumns="False" GridLinesVisibility="None" d:ItemsSource="{d:SampleData ItemCount=5}" Background="{x:Null}" BorderBrush="{x:Null}" RowHeaderWidth="0" IsVisibleChanged="ListTransactions_IsVisibleChanged" Visibility="Collapsed" LayoutUpdated="ListTransactions_IsVisibleChanged" Loaded="ListTransactions_IsVisibleChanged" SizeChanged="ListTransactions_IsVisibleChanged" BeginningEdit="ListTransactions_BeginningEdit" DockPanel.Dock="Left">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value='#1FFFFFFF' />
+                        <Setter Property="Margin" Value="1" />
+                        <Setter Property="Padding" Value="4"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Background" Value="#3F000000"/>
+                        <Setter Property="Foreground" Value="White"/>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="#00000000"/>
+                    </Style>
+                </DataGrid.RowStyle>
+            </DataGrid>
+        </DockPanel>
+
+        <DockPanel x:Name="selectAcc" DockPanel.Dock="Top" LastChildFill="False" Visibility="Collapsed">
+
+            <ComboBox x:Name="comboAcc" DockPanel.Dock="Right" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" Margin="2,2,2,2" VerticalAlignment="Top" SelectedValuePath="Id" SelectionChanged="ComboAcc_SelectionChanged" Opacity="0.75">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=Id}" Foreground="Black"/>
+                            <TextBlock Text=" - "/>
+                            <TextBlock Text="{Binding Path=Name}" Foreground="Black"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Label  DockPanel.Dock="Right" Content="Select an account or blank for all:" Foreground="White" Padding="5,5,5,1"/>
+        </DockPanel>
+
+        <ScrollViewer x:Name="panelStat" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Bottom" Margin="2" Padding="0">
+            <DockPanel  DockPanel.Dock="Top" Margin="0" LastChildFill="True">
+                <Label x:Name="labelStatMin"  Content="Min" Foreground="Black" Padding="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="16" Margin="0,-8,-100,0" Panel.ZIndex="-100"/>
+                <Label x:Name="labelStatHalfMin"  Content="HalfMin" Foreground="Black" Padding="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="16" Margin="0,0,-100,200" Panel.ZIndex="-100"/>
+                <Border DockPanel.Dock="Bottom" MinHeight="400" Panel.ZIndex="5" MinWidth="1100">
+                    <Canvas>
+                        <Canvas.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#1FFF7F00"/>
+                                <GradientStop Color="#2FFF0000" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Canvas.Background>
+                        <Line  Stroke="#7F000000"  VerticalAlignment="Top" HorizontalAlignment="Center" Height="1" Margin="0,300,-1100,0" Panel.ZIndex="-101" X2="1100"/>
+                        <Line  Stroke="#7F000000"  VerticalAlignment="Top" HorizontalAlignment="Center" Height="1" Margin="0,200,-1100,0" Panel.ZIndex="-101" X2="1100"/>
+                        <Line  Stroke="#7F000000"  VerticalAlignment="Top" HorizontalAlignment="Center" Height="1" Margin="0,100,-1100,0" Panel.ZIndex="-101" X2="1100"/>
+                    </Canvas>
+                </Border>
+                <Label  Content="0" Foreground="Black" Padding="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="10" Height="16" Margin="0,-8,-12,-8" Panel.ZIndex="-100"/>
+                <Label  Content="Feb" Foreground="Black" Padding="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="25" Height="16" Margin="0,-8,-93,-8" Panel.ZIndex="-100"/>
+                <Label  Content="Mar" Foreground="Black" Padding="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="25" Height="16" Margin="0,-8,-180,-8" Panel.ZIndex="-100"/>
+                <Label  Content="Apr" Foreground="Black" Padding="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="25" Height="16" Margin="0,-8,-273,-8" Panel.ZIndex="-100"/>
+                <Label  Content="May" Foreground="Black" Padding="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="25" Height="16" Margin="0,-8,-363,-8" Panel.ZIndex="-100"/>
+                <Label  Content="Jun" Foreground="Black" Padding="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="25" Height="16" Margin="0,-8,-456,-8" Panel.ZIndex="-100"/>
+                <Label  Content="Jul" Foreground="Black" Padding="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="25" Height="16" Margin="0,-8,-546,-8" Panel.ZIndex="-100"/>
+                <Label  Content="Aug" Foreground="Black" Padding="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="25" Height="16" Margin="0,-8,-639,-8" Panel.ZIndex="-100"/>
+                <Label  Content="Sep" Foreground="Black" Padding="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="25" Height="16" Margin="0,-8,-732,-8" Panel.ZIndex="-100"/>
+                <Label  Content="Oct" Foreground="Black" Padding="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="25" Height="16" Margin="0,-8,-822,-8" Panel.ZIndex="-100"/>
+                <Label  Content="Nov" Foreground="Black" Padding="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="25" Height="16" Margin="0,-8,-915,-8" Panel.ZIndex="-100"/>
+                <Label  Content="Dec" Foreground="Black" Padding="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="25" Height="16" Margin="0,-8,-1005,-8" Panel.ZIndex="-100"/>
+                <Label x:Name="labelStatMax" Content="Max" Foreground="Black" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="16" Margin="0,0,-100,0" Panel.ZIndex="-100"/>
+                <Label x:Name="labelStatHalfMax" Content="HalfMax" Foreground="Black" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="16" Margin="0,200,-100,0" Panel.ZIndex="-100"/>
+                <Line  Stroke="#7F000000"  VerticalAlignment="Top" HorizontalAlignment="Center" Height="1" Margin="0,300,-1100,0" Panel.ZIndex="-100" X2="1100"/>
+                <Line  Stroke="#7F000000"  VerticalAlignment="Top" HorizontalAlignment="Center" Height="1" Margin="0,200,-1100,0" Panel.ZIndex="-100" X2="1100"/>
+                <Line  Stroke="#7F000000"  VerticalAlignment="Top" HorizontalAlignment="Center" Height="1" Margin="0,100,-1100,0" Panel.ZIndex="-100" X2="1100"/>
+                <Border x:Name="borderStat" BorderThickness="0" DockPanel.Dock="Top" RenderTransformOrigin="0.5,0.5" MinHeight="400" Panel.ZIndex="6" MinWidth="1100">
+                    <Border.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform Y="0"/>
+                        </TransformGroup>
+                    </Border.RenderTransform>
+                    <Canvas>
+                        <Canvas.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#1F7FBFFF"/>
+                                <GradientStop Color="#1F00FF00" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Canvas.Background>
+                        <Canvas.LayoutTransform>
+                            <ScaleTransform ScaleY="-1"/>
+                        </Canvas.LayoutTransform>
+                        <ItemsControl ItemsSource="{Binding Segments}" Panel.ZIndex="-99">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Line X1="{Binding From.X}" Y1="{Binding From.Y}" X2="{Binding To.X}" Y2="{Binding To.Y}" Stroke="#5FFFFFFF" StrokeThickness="3"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Canvas>
+                </Border>
+            </DockPanel>
+        </ScrollViewer>
+
+        <Grid x:Name="gridCal" DockPanel.Dock="Bottom" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+
+
+
+
+    </DockPanel>
+</Window>

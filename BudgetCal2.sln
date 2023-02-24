@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetCal2", "BudgetCal2\BudgetCal2.csproj", "{AF626BC6-D61B-4A9A-BDC7-0905FF1119C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5347EF2D-83E7-4AB1-9625-F2E81B8D6A44}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF626BC6-D61B-4A9A-BDC7-0905FF1119C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF626BC6-D61B-4A9A-BDC7-0905FF1119C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF626BC6-D61B-4A9A-BDC7-0905FF1119C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF626BC6-D61B-4A9A-BDC7-0905FF1119C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {22D7B3E3-237D-4C0E-A35C-3FA04DA7E03B}
+	EndGlobalSection
+EndGlobal
